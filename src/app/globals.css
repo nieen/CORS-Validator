@@ -1,0 +1,177 @@
+@import "tailwindcss";
+
+/* 主题系统CSS变量 */
+:root {
+  /* 默认浅色主题 */
+  --color-primary: #3b82f6;
+  --color-secondary: #64748b;
+  --color-background: #ffffff;
+  --color-surface: #f8fafc;
+  --color-text: #1e293b;
+  --color-textSecondary: #64748b;
+  --color-border: #e2e8f0;
+  --color-success: #10b981;
+  --color-error: #ef4444;
+  --color-warning: #f59e0b;
+  
+  /* 字体变量 */
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* 浅色主题 */
+.theme-light {
+  --color-primary: #3b82f6;
+  --color-secondary: #64748b;
+  --color-background: #ffffff;
+  --color-surface: #f8fafc;
+  --color-text: #1e293b;
+  --color-textSecondary: #64748b;
+  --color-border: #e2e8f0;
+  --color-success: #10b981;
+  --color-error: #ef4444;
+  --color-warning: #f59e0b;
+}
+
+/* 深色主题 */
+.theme-dark {
+  --color-primary: #60a5fa;
+  --color-secondary: #94a3b8;
+  --color-background: #0f172a;
+  --color-surface: #1e293b;
+  --color-text: #f1f5f9;
+  --color-textSecondary: #94a3b8;
+  --color-border: #334155;
+  --color-success: #34d399;
+  --color-error: #f87171;
+  --color-warning: #fbbf24;
+}
+
+/* 蓝色主题 */
+.theme-blue {
+  --color-primary: #1e40af;
+  --color-secondary: #3730a3;
+  --color-background: #eff6ff;
+  --color-surface: #dbeafe;
+  --color-text: #1e3a8a;
+  --color-textSecondary: #3730a3;
+  --color-border: #93c5fd;
+  --color-success: #059669;
+  --color-error: #dc2626;
+  --color-warning: #d97706;
+}
+
+/* 基础样式 */
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-family: Arial, Helvetica, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* 主题相关的实用类 */
+.bg-background { background-color: var(--color-background); }
+.bg-surface { background-color: var(--color-surface); }
+.bg-primary { background-color: var(--color-primary); }
+.bg-secondary { background-color: var(--color-secondary); }
+.bg-success { background-color: var(--color-success); }
+.bg-error { background-color: var(--color-error); }
+.bg-warning { background-color: var(--color-warning); }
+
+.text-text { color: var(--color-text); }
+.text-textSecondary { color: var(--color-textSecondary); }
+.text-primary { color: var(--color-primary); }
+.text-secondary { color: var(--color-secondary); }
+.text-success { color: var(--color-success); }
+.text-error { color: var(--color-error); }
+.text-warning { color: var(--color-warning); }
+
+.border-border { border-color: var(--color-border); }
+.border-primary { border-color: var(--color-primary); }
+.border-secondary { border-color: var(--color-secondary); }
+.border-success { border-color: var(--color-success); }
+.border-error { border-color: var(--color-error); }
+.border-warning { border-color: var(--color-warning); }
+
+/* 悬停效果 */
+.hover\:bg-background:hover { background-color: var(--color-background); }
+.hover\:bg-surface:hover { background-color: var(--color-surface); }
+.hover\:bg-primary:hover { background-color: var(--color-primary); }
+.hover\:text-text:hover { color: var(--color-text); }
+.hover\:text-primary:hover { color: var(--color-primary); }
+.hover\:border-primary:hover { border-color: var(--color-primary); }
+
+/* 焦点效果 */
+.focus\:border-primary:focus { border-color: var(--color-primary); }
+.focus\:ring-primary:focus { --tw-ring-color: var(--color-primary); }
+
+/* 平滑过渡效果 */
+.transition-theme {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* 卡片样式 */
+.card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+
+/* 按钮样式 */
+.btn-primary {
+  background-color: var(--color-primary);
+  color: white;
+  border: 1px solid var(--color-primary);
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.btn-secondary {
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-background);
+}
+
+/* 输入框样式 */
+.input {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+
+.input:focus {
+  border-color: var(--color-primary);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* 选择框样式 */
+.select {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+
+.select:focus {
+  border-color: var(--color-primary);
+  outline: none;
+}
+
+/* 文本区域样式 */
+.textarea {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+
+.textarea:focus {
+  border-color: var(--color-primary);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
