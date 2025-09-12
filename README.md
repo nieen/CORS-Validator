@@ -28,6 +28,11 @@
 - **[React 19.1.0](https://reactjs.org/)** - 用户界面库
 - **[TypeScript 5.x](https://www.typescriptlang.org/)** - 类型安全的JavaScript
 
+### 状态管理
+- **[Zustand](https://zustand-demo.pmnd.rs/)** - 轻量级全局状态管理（主题、语言、用户偏好）
+- **[Jotai](https://jotai.org/)** - 原子化状态管理（CORS测试配置和状态）
+- **状态持久化** - 自动保存用户配置到 localStorage/sessionStorage
+
 ### 样式和UI
 - **[Tailwind CSS 3.x](https://tailwindcss.com/)** - 实用优先的CSS框架
 - **响应式设计** - 适配各种屏幕尺寸
@@ -165,15 +170,27 @@ location /api {
 ```
 cors-validator/
 ├── src/
-│   └── app/
-│       ├── globals.css      # 全局样式
-│       ├── layout.tsx       # 根布局组件
-│       └── page.tsx         # 主页面组件
-├── public/                  # 静态资源
-├── package.json            # 项目配置
-├── next.config.ts          # Next.js 配置
-├── tailwind.config.ts      # Tailwind CSS 配置
-└── tsconfig.json           # TypeScript 配置
+│   ├── app/
+│   │   ├── globals.css           # 全局样式和主题变量
+│   │   ├── layout.tsx            # 根布局组件
+│   │   ├── page.tsx              # 主页面组件（CORS测试界面）
+│   │   ├── theme-switcher.tsx    # 主题切换组件
+│   │   └── language-switcher.tsx # 语言切换组件
+│   ├── stores/
+│   │   ├── index.ts              # 状态管理导出
+│   │   └── globalStore.ts        # Zustand 全局状态（主题、语言、偏好）
+│   ├── atoms/
+│   │   └── corsTestAtoms.ts      # Jotai 原子状态（CORS测试配置）
+│   ├── hooks/
+│   │   ├── index.ts              # Hooks 导出
+│   │   └── useAppState.ts        # 状态管理 Hooks
+│   └── types/
+│       └── state.ts              # TypeScript 类型定义
+├── public/                       # 静态资源
+├── package.json                 # 项目配置
+├── next.config.ts               # Next.js 配置
+├── tailwind.config.ts           # Tailwind CSS 配置
+└── tsconfig.json                # TypeScript 配置
 ```
 
 ### 可用脚本

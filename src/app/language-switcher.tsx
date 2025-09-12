@@ -1,7 +1,9 @@
 'use client';
 
-import React from 'react';
-import { useI18n, Language } from './i18n-context';
+import React, { memo } from 'react';
+import { Globe, Languages } from 'lucide-react';
+import { Language } from '../types/state';
+import { useLanguage } from '../hooks/useAppState';
 
 // 语言图标组件
 const LanguageIcon = ({ language }: { language: Language }) => {
@@ -25,7 +27,9 @@ const LanguageIcon = ({ language }: { language: Language }) => {
 
 // 语言切换器组件
 export function LanguageSwitcher() {
-  const { language, setLanguage, availableLanguages } = useI18n();
+  const { language, setLanguage } = useLanguage();
+  // 定义可用语言列表
+  const availableLanguages: Language[] = ['zh', 'en'];
 
   return (
     <div className="relative">
@@ -65,8 +69,10 @@ export function LanguageSwitcher() {
 }
 
 // 紧凑版语言切换器（仅图标）
-export function CompactLanguageSwitcher() {
-  const { language, setLanguage, availableLanguages } = useI18n();
+export const CompactLanguageSwitcher = memo(() => {
+  const { language, setLanguage } = useLanguage();
+  // 定义可用语言列表
+  const availableLanguages: Language[] = ['zh', 'en'];
 
   return (
     <div className="flex items-center space-x-0.5 bg-surface border border-border rounded-md p-0.5">
@@ -93,11 +99,15 @@ export function CompactLanguageSwitcher() {
       })}
     </div>
   );
-}
+});
+
+CompactLanguageSwitcher.displayName = 'CompactLanguageSwitcher';
 
 // 下拉式语言切换器
 export function DropdownLanguageSwitcher() {
-  const { language, setLanguage, availableLanguages } = useI18n();
+  const { language, setLanguage } = useLanguage();
+  // 定义可用语言列表
+  const availableLanguages: Language[] = ['zh', 'en'];
   const [isOpen, setIsOpen] = React.useState(false);
 
   const getLanguageDisplayName = (lang: Language) => {

@@ -1,7 +1,9 @@
 'use client';
 
-import React from 'react';
-import { useTheme, Theme } from './theme-context';
+import React, { memo } from 'react';
+import { Sun, Moon, Palette } from 'lucide-react';
+import { Theme } from '../types/state';
+import { useTheme } from '../hooks/useAppState';
 
 // 主题图标组件
 const ThemeIcon = ({ theme }: { theme: Theme }) => {
@@ -31,7 +33,18 @@ const ThemeIcon = ({ theme }: { theme: Theme }) => {
 
 // 主题切换器组件
 export function ThemeSwitcher() {
-  const { theme, setTheme, availableThemes, themeConfig } = useTheme();
+  const { theme, setTheme } = useTheme();
+  const availableThemes: Theme[] = ['light', 'dark', 'blue'];
+  
+  // 主题配置映射
+  const getThemeDisplayName = (theme: Theme) => {
+    const themeNames = {
+      light: '浅色',
+      dark: '深色', 
+      blue: '蓝色'
+    };
+    return themeNames[theme];
+  };
 
   return (
     <div className="relative">
@@ -55,7 +68,7 @@ export function ThemeSwitcher() {
             >
               <ThemeIcon theme={themeOption} />
               <span className="hidden sm:inline">
-                {themeOption === 'light' ? '浅色' : themeOption === 'dark' ? '深色' : '蓝色'}
+                {getThemeDisplayName(themeOption)}
               </span>
             </button>
           );
@@ -64,15 +77,16 @@ export function ThemeSwitcher() {
       
       {/* 当前主题指示器 */}
       <div className="absolute -bottom-8 left-0 text-xs text-textSecondary">
-        当前: {themeConfig.displayName}
+        当前: {getThemeDisplayName(theme)}主题
       </div>
     </div>
   );
 }
 
 // 简化版主题切换器（仅图标）
-export function CompactThemeSwitcher() {
-  const { theme, setTheme, availableThemes } = useTheme();
+export const CompactThemeSwitcher = memo(() => {
+  const { theme, setTheme } = useTheme();
+  const availableThemes: Theme[] = ['light', 'dark', 'blue'];
 
   return (
     <div className="flex items-center space-x-0.5 bg-surface border border-border rounded-md p-0.5">
@@ -99,12 +113,25 @@ export function CompactThemeSwitcher() {
       })}
     </div>
   );
-}
+});
+
+CompactThemeSwitcher.displayName = 'CompactThemeSwitcher';
 
 // 下拉式主题切换器
 export function DropdownThemeSwitcher() {
-  const { theme, setTheme, availableThemes, themeConfig } = useTheme();
+  const { theme, setTheme } = useTheme();
+  const availableThemes: Theme[] = ['light', 'dark', 'blue'];
   const [isOpen, setIsOpen] = React.useState(false);
+  
+  // 获取主题显示名称
+  const getThemeDisplayName = (theme: Theme) => {
+    const themeNames = {
+      light: '浅色主题',
+      dark: '深色主题', 
+      blue: '蓝色主题'
+    };
+    return themeNames[theme];
+  };
 
   return (
     <div className="relative">
@@ -114,7 +141,7 @@ export function DropdownThemeSwitcher() {
         className="flex items-center space-x-2 px-3 py-2 bg-surface border border-border rounded-lg text-sm font-medium text-text hover:bg-background transition-colors duration-200"
       >
         <ThemeIcon theme={theme} />
-        <span>{themeConfig.displayName}</span>
+        <span>{getThemeDisplayName(theme)}</span>
         <svg 
           className={`w-4 h-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} 
           fill="none" 
@@ -138,7 +165,7 @@ export function DropdownThemeSwitcher() {
           <div className="absolute top-full left-0 mt-1 w-full bg-surface border border-border rounded-lg shadow-lg z-20">
             {availableThemes.map((themeOption) => {
               const isActive = theme === themeOption;
-              const displayName = themeOption === 'light' ? '浅色主题' : themeOption === 'dark' ? '深色主题' : '蓝色主题';
+              const displayName = getThemeDisplayName(themeOption);
               
               return (
                 <button
