@@ -6,142 +6,141 @@
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue.svg)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.x-38B2AC.svg)
 
-专业的跨域资源共享(CORS)配置验证工具，帮助开发者快速测试和调试API接口的CORS设置。
+A professional Cross-Origin Resource Sharing (CORS) configuration validation tool that helps developers quickly test and debug API endpoint CORS settings.
 
-## 🌟 功能特性
+## 🌟 Features
 
-- 🚀 **多种HTTP方法支持**：GET、POST、PUT、DELETE、OPTIONS
-- 📝 **请求体支持**：支持JSON格式的请求体发送
-- 🔍 **智能响应解析**：自动识别并解析JSON和文本格式响应
-- 📊 **详细测试结果**：显示状态码、响应头、响应内容等详细信息
-- 🎨 **现代化UI**：基于Tailwind CSS的响应式设计
-- ⚡ **实时验证**：即时测试CORS配置，快速定位问题
-- 🛡️ **错误处理**：完善的错误捕获和用户友好的错误提示
-- 📱 **响应式设计**：支持桌面端和移动端访问
-- 🔥 **实时更新**：项目正在开发中，欢迎贡献和反馈
-- 📚 **后续计划**：工程化代码，增加侧边栏，方便后续新增其他工具的操作页面
+- 🚀 **Multiple HTTP Methods Support**: GET, POST, PUT, DELETE, OPTIONS
+- 📝 **Request Body Support**: Support for JSON format request body sending
+- 🔍 **Smart Response Parsing**: Automatically identify and parse JSON and text format responses
+- 📊 **Detailed Test Results**: Display status codes, response headers, response content and other detailed information
+- 🎨 **Modern UI**: Responsive design based on Tailwind CSS
+- ⚡ **Real-time Validation**: Instant CORS configuration testing, quickly locate issues
+- 🛡️ **Error Handling**: Comprehensive error catching and user-friendly error messages
+- 📱 **Responsive Design**: Support for desktop and mobile access
+- 🔥 **Live Updates**: Project is under development, contributions and feedback welcome
 
-## 🛠️ 技术栈
+## 🛠️ Tech Stack
 
-### 前端框架
-- **[Next.js 15.5.2](https://nextjs.org/)** - React全栈框架
-- **[React 19.1.0](https://reactjs.org/)** - 用户界面库
-- **[TypeScript 5.x](https://www.typescriptlang.org/)** - 类型安全的JavaScript
+### Frontend Framework
+- **[Next.js 15.5.2](https://nextjs.org/)** - React full-stack framework
+- **[React 19.1.0](https://reactjs.org/)** - User interface library
+- **[TypeScript 5.x](https://www.typescriptlang.org/)** - Type-safe JavaScript
 
-### 状态管理
-- **[Zustand](https://zustand-demo.pmnd.rs/)** - 轻量级全局状态管理（主题、语言、用户偏好）
-- **[Jotai](https://jotai.org/)** - 原子化状态管理（CORS测试配置和状态）
-- **状态持久化** - 自动保存用户配置到 localStorage/sessionStorage
+### State Management
+- **[Zustand](https://zustand-demo.pmnd.rs/)** - Lightweight global state management (theme, language, user preferences)
+- **[Jotai](https://jotai.org/)** - Atomic state management (CORS test configuration and state)
+- **State Persistence** - Automatically save user configuration to localStorage/sessionStorage
 
-### 样式和UI
-- **[Tailwind CSS 3.x](https://tailwindcss.com/)** - 实用优先的CSS框架
-- **响应式设计** - 适配各种屏幕尺寸
-- **现代化组件** - 美观的用户界面组件
+### Styling and UI
+- **[Tailwind CSS 3.x](https://tailwindcss.com/)** - Utility-first CSS framework
+- **Responsive Design** - Adapt to various screen sizes
+- **Modern Components** - Beautiful user interface components
 
-### 开发工具
-- **[ESLint](https://eslint.org/)** - 代码质量检查
-- **[PostCSS](https://postcss.org/)** - CSS处理工具
-- **[Turbopack](https://turbo.build/pack)** - 高性能构建工具
+### Development Tools
+- **[ESLint](https://eslint.org/)** - Code quality checking
+- **[PostCSS](https://postcss.org/)** - CSS processing tool
+- **[Turbopack](https://turbo.build/pack)** - High-performance build tool
 
-### 部署和构建
-- **Vercel** - 推荐的部署平台
-- **Node.js** - 运行时环境
-- **npm/yarn/pnpm** - 包管理器
+### Deployment and Build
+- **Vercel** - Recommended deployment platform
+- **Node.js** - Runtime environment
+- **npm/yarn/pnpm** - Package managers
 
-## 🚀 快速开始
+## 🚀 Quick Start
 
-### 环境要求
+### Requirements
 
-- Node.js 18.0 或更高版本
-- npm、yarn、pnpm 或 bun 包管理器
+- Node.js 18.0 or higher
+- npm, yarn, pnpm, or bun package manager
 
-### 安装步骤
+### Installation
 
-1. **克隆项目**
+1. **Clone the project**
 ```bash
 git clone <repository-url>
 cd cors-validator
 ```
 
-2. **安装依赖**
+2. **Install dependencies**
 ```bash
 npm install
-# 或者
+# or
 yarn install
-# 或者
+# or
 pnpm install
-# 或者
+# or
 bun install
 ```
 
-3. **启动开发服务器**
+3. **Start development server**
 ```bash
 npm run dev
-# 或者
+# or
 yarn dev
-# 或者
+# or
 pnpm dev
-# 或者
+# or
 bun dev
 ```
 
-4. **访问应用**
+4. **Access the application**
 
-打开浏览器访问 [http://localhost:3000](http://localhost:3000)
+Open your browser and visit [http://localhost:3000](http://localhost:3000)
 
-## 📖 使用方法
+## 📖 Usage
 
-### 基本使用
+### Basic Usage
 
-1. **输入API地址**
-   - 在"API地址"输入框中输入要测试的API端点
-   - 例如：`http://localhost:8002/api/v1/settings`
+1. **Enter API Address**
+   - Enter the API endpoint you want to test in the "API Address" input field
+   - Example: `http://localhost:8002/api/v1/settings`
 
-2. **选择请求方法**
-   - 从下拉菜单中选择HTTP方法（GET、POST、PUT、DELETE、OPTIONS）
-   - 默认为GET方法
+2. **Select Request Method**
+   - Choose HTTP method from the dropdown menu (GET, POST, PUT, DELETE, OPTIONS)
+   - Default is GET method
 
-3. **配置请求体**（可选）
-   - 对于POST、PUT、DELETE方法，可以添加JSON格式的请求体
-   - 工具会自动验证JSON格式的正确性
+3. **Configure Request Body** (Optional)
+   - For POST, PUT, DELETE methods, you can add JSON format request body
+   - The tool will automatically validate JSON format correctness
 
-4. **执行测试**
-   - 点击"开始测试"按钮
-   - 查看详细的测试结果
+4. **Execute Test**
+   - Click the "Start Test" button
+   - View detailed test results
 
-### 测试结果解读
+### Understanding Test Results
 
-#### 成功响应
+#### Successful Response
 ```
-✅ CORS测试成功！
-请求方法: GET
-状态码: 200
-内容类型: application/json
-响应数据: {"status": "ok"}
-```
-
-#### 失败响应
-```
-❌ CORS错误: Failed to fetch
-
-这通常意味着：
-1. 目标服务器未正确配置CORS头
-2. 服务器不允许来自当前域的请求方法 (POST)
-3. 服务器未运行在指定地址
+✅ CORS test successful!
+Request Method: GET
+Status Code: 200
+Content Type: application/json
+Response Data: {"status": "ok"}
 ```
 
-### 常见CORS配置示例
+#### Failed Response
+```
+❌ CORS Error: Failed to fetch
 
-#### Express.js 服务器配置
+This usually means:
+1. Target server has not properly configured CORS headers
+2. Server does not allow request method (POST) from current domain
+3. Server is not running at specified address
+```
+
+### Common CORS Configuration Examples
+
+#### Express.js Server Configuration
 ```javascript
 const express = require('express');
 const cors = require('cors');
 const app = express();
 
-// 允许所有来源（仅开发环境）
+// Allow all origins (development only)
 app.use(cors());
 
-// 或者指定特定配置
+// Or specify specific configuration
 app.use(cors({
   origin: ['http://localhost:3000', 'https://yourdomain.com'],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
@@ -149,7 +148,7 @@ app.use(cors({
 }));
 ```
 
-#### Nginx 配置
+#### Nginx Configuration
 ```nginx
 location /api {
     add_header Access-Control-Allow-Origin "http://localhost:3000";
@@ -164,75 +163,75 @@ location /api {
 }
 ```
 
-## 🔧 开发指南
+## 🔧 Development Guide
 
-### 项目结构
+### Project Structure
 ```
 cors-validator/
 ├── src/
 │   ├── app/
-│   │   ├── globals.css           # 全局样式和主题变量
-│   │   ├── layout.tsx            # 根布局组件
-│   │   ├── page.tsx              # 主页面组件（CORS测试界面）
-│   │   ├── theme-switcher.tsx    # 主题切换组件
-│   │   └── language-switcher.tsx # 语言切换组件
+│   │   ├── globals.css           # Global styles and theme variables
+│   │   ├── layout.tsx            # Root layout component
+│   │   ├── page.tsx              # Main page component (CORS test interface)
+│   │   ├── theme-switcher.tsx    # Theme switcher component
+│   │   └── language-switcher.tsx # Language switcher component
 │   ├── stores/
-│   │   ├── index.ts              # 状态管理导出
-│   │   └── globalStore.ts        # Zustand 全局状态（主题、语言、偏好）
+│   │   ├── index.ts              # State management exports
+│   │   └── globalStore.ts        # Zustand global state (theme, language, preferences)
 │   ├── atoms/
-│   │   └── corsTestAtoms.ts      # Jotai 原子状态（CORS测试配置）
+│   │   └── corsTestAtoms.ts      # Jotai atomic state (CORS test configuration)
 │   ├── hooks/
-│   │   ├── index.ts              # Hooks 导出
-│   │   └── useAppState.ts        # 状态管理 Hooks
+│   │   ├── index.ts              # Hooks exports
+│   │   └── useAppState.ts        # State management hooks
 │   └── types/
-│       └── state.ts              # TypeScript 类型定义
-├── public/                       # 静态资源
-├── package.json                 # 项目配置
-├── next.config.ts               # Next.js 配置
-├── tailwind.config.ts           # Tailwind CSS 配置
-└── tsconfig.json                # TypeScript 配置
+│       └── state.ts              # TypeScript type definitions
+├── public/                       # Static assets
+├── package.json                 # Project configuration
+├── next.config.ts               # Next.js configuration
+├── tailwind.config.ts           # Tailwind CSS configuration
+└── tsconfig.json                # TypeScript configuration
 ```
 
-### 可用脚本
+### Available Scripts
 
 ```bash
-# 开发模式
+# Development mode
 npm run dev
 
-# 构建生产版本
+# Build production version
 npm run build
 
-# 启动生产服务器
+# Start production server
 npm run start
 
-# 代码检查
+# Code linting
 npm run lint
 ```
 
-### 自定义配置
+### Custom Configuration
 
-你可以通过修改以下文件来自定义应用：
+You can customize the application by modifying the following files:
 
-- `src/app/page.tsx` - 主要的应用逻辑和UI
-- `src/app/globals.css` - 全局样式
-- `tailwind.config.ts` - Tailwind CSS 配置
-- `next.config.ts` - Next.js 配置
+- `src/app/page.tsx` - Main application logic and UI
+- `src/app/globals.css` - Global styles
+- `tailwind.config.ts` - Tailwind CSS configuration
+- `next.config.ts` - Next.js configuration
 
-## 🚀 部署
+## 🚀 Deployment
 
-### Vercel 部署（推荐）
+### Vercel Deployment (Recommended)
 
-1. 将代码推送到 GitHub 仓库
-2. 在 [Vercel](https://vercel.com) 上导入项目
-3. Vercel 会自动检测 Next.js 项目并进行部署
+1. Push code to GitHub repository
+2. Import project on [Vercel](https://vercel.com)
+3. Vercel will automatically detect Next.js project and deploy
 
-### 其他部署选项
+### Other Deployment Options
 
-- **Netlify**: 支持 Next.js 静态导出
-- **Docker**: 使用官方 Next.js Docker 镜像
-- **传统服务器**: 构建后部署到 Node.js 服务器
+- **Netlify**: Supports Next.js static export
+- **Docker**: Use official Next.js Docker image
+- **Traditional Server**: Deploy to Node.js server after build
 
-### Docker 部署
+### Docker Deployment
 
 ```dockerfile
 FROM node:18-alpine
@@ -250,41 +249,41 @@ EXPOSE 3000
 CMD ["npm", "start"]
 ```
 
-## 🤝 贡献指南
+## 🤝 Contributing
 
-欢迎贡献代码！请遵循以下步骤：
+Contributions are welcome! Please follow these steps:
 
-1. Fork 本仓库
-2. 创建特性分支 (`git checkout -b feature/AmazingFeature`)
-3. 提交更改 (`git commit -m 'Add some AmazingFeature'`)
-4. 推送到分支 (`git push origin feature/AmazingFeature`)
-5. 开启 Pull Request
+1. Fork this repository
+2. Create feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to branch (`git push origin feature/AmazingFeature`)
+5. Open Pull Request
 
-## 📝 许可证
+## 📝 License
 
-本项目采用 MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情。
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🆘 常见问题
+## 🆘 FAQ
 
-### Q: 为什么测试总是失败？
-A: 请检查：
-- 目标API服务器是否正在运行
-- API地址是否正确
-- 服务器是否配置了正确的CORS头
+### Q: Why do tests always fail?
+A: Please check:
+- Whether the target API server is running
+- Whether the API address is correct
+- Whether the server has configured correct CORS headers
 
-### Q: 如何测试需要认证的API？
-A: 目前版本不支持自定义请求头，这个功能在后续版本中会添加。
+### Q: How to test APIs that require authentication?
+A: The current version does not support custom request headers, this feature will be added in future versions.
 
-### Q: 支持哪些响应格式？
-A: 支持JSON和纯文本格式，会自动检测并适当解析。
+### Q: What response formats are supported?
+A: Supports JSON and plain text formats, automatically detects and parses appropriately.
 
-## 📞 联系方式
+## 📞 Contact
 
-如有问题或建议，请通过以下方式联系：
+If you have questions or suggestions, please contact us through:
 
-- 提交 [Issue](https://github.com/your-username/cors-validator/issues)
-- 发送邮件到：your-email@example.com
+- Submit [Issue](https://github.com/your-username/cors-validator/issues)
+- Send email to: your-email@example.com
 
 ---
 
-⭐ 如果这个项目对你有帮助，请给它一个星标！
+⭐ If this project helps you, please give it a star!
