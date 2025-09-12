@@ -1,13 +1,18 @@
 'use client';
 
 import { useState } from 'react';
-import { ThemeSwitcher } from './theme-switcher';
+import { CompactThemeSwitcher } from './theme-switcher';
+import { CompactLanguageSwitcher } from './language-switcher';
+import { useI18n } from './i18n-context';
 
 /**
  * CORS测试页面组件
  * 用于验证API接口的跨域设置是否生效
  */
 export default function CorsTestPage() {
+  // 国际化
+  const { t, language } = useI18n();
+  
   // 状态管理
   const [testResult, setTestResult] = useState<string>(''); // 测试结果
   const [isLoading, setIsLoading] = useState<boolean>(false); // 加载状态
@@ -39,7 +44,7 @@ export default function CorsTestPage() {
           JSON.parse(requestBody);
           requestConfig.body = requestBody;
         } catch (jsonError) {
-          setTestResult(`❌ 请求体JSON格式错误: ${jsonError}`);
+          setTestResult(`❌ ${t('jsonFormatError')}: ${jsonError}`);
           setIsLoading(false);
           return;
         }
@@ -61,7 +66,7 @@ export default function CorsTestPage() {
             const textData = await response.text();
             // 如果文本为空，显示特殊提示
             if (!textData.trim()) {
-              responseData = '(空响应)';
+              responseData = t('emptyResponse');
             } else {
               // 尝试解析为JSON，如果失败则保持为文本
               try {
@@ -71,37 +76,43 @@ export default function CorsTestPage() {
               }
             }
           }
-        } catch (parseError: any) {
+        } catch {
           // JSON解析失败，尝试获取原始文本
           try {
             responseData = await response.text();
             if (!responseData.trim()) {
-              responseData = '(空响应)';
+              responseData = t('emptyResponse');
             }
           } catch {
-            responseData = '(无法解析响应内容)';
+            responseData = t('unableToParseResponse');
           }
         }
         
-        setTestResult(`✅ CORS测试成功！\n请求方法: ${httpMethod}\n状态码: ${response.status}\n内容类型: ${contentType || '未指定'}\n响应数据: ${typeof responseData === 'string' ? responseData : JSON.stringify(responseData, null, 2)}`);
+        setTestResult(`✅ ${t('testSuccess')}\n${t('requestMethod')}: ${httpMethod}\n${t('statusCode')}: ${response.status}\n${t('contentType')}: ${contentType || t('notSpecified')}\n${t('responseData')}: ${typeof responseData === 'string' ? responseData : JSON.stringify(responseData, null, 2)}`);
       } else {
         // 处理非成功状态码
         let errorData;
         try {
           const textData = await response.text();
-          errorData = textData.trim() || '(无错误详情)';
+          errorData = textData.trim() || t('noErrorDetails');
         } catch {
-          errorData = '(无法获取错误详情)';
+          errorData = t('unableToGetErrorDetails');
         }
         
-        setTestResult(`⚠️ 请求失败\n请求方法: ${httpMethod}\n状态码: ${response.status}\n状态文本: ${response.statusText}\n错误详情: ${errorData}`);
+        setTestResult(`⚠️ ${t('requestFailed')}\n${t('requestMethod')}: ${httpMethod}\n${t('statusCode')}: ${response.status}\n${t('statusText')}: ${response.statusText}\n${t('errorDetails')}: ${errorData}`);
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       // 处理CORS错误或网络错误
-      if (error.message.includes('CORS') || error.message.includes('fetch')) {
-        setTestResult(`❌ CORS错误: ${error.message}\n\n这通常意味着：\n1. 目标服务器未正确配置CORS头\n2. 服务器不允许来自当前域的请求方法 (${httpMethod})\n3. 服务器未运行在指定地址`);
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      if (errorMessage.includes('CORS') || errorMessage.includes('fetch')) {
+        const corsExplanation = t('corsErrorExplanation') as {
+          line1: string;
+          line2: string;
+          line3: string;
+        };
+        setTestResult(`❌ ${t('corsError')}: ${errorMessage}\n\n${language === 'zh' ? '这通常意味着：' : 'This usually means:'}\n${corsExplanation.line1}\n${corsExplanation.line2} (${httpMethod})\n${corsExplanation.line3}`);
       } else {
-        setTestResult(`❌ 网络错误: ${error.message}`);
+        setTestResult(`❌ ${t('networkError')}: ${errorMessage}`);
       }
     } finally {
       setIsLoading(false);
@@ -117,25 +128,27 @@ export default function CorsTestPage() {
             <div></div> {/* 左侧占位 */}
             <div className="text-center">
               <h1 className="text-3xl font-bold text-text mb-2">
-                CORS Validator
+                {t('title')}
               </h1>
               <p className="text-textSecondary">
-                专业的跨域资源共享(CORS)配置验证工具
+                {t('description')}
               </p>
             </div>
-            <div className="flex justify-end">
-              <ThemeSwitcher />
+            <div className="flex justify-end items-center space-x-2">
+              <CompactLanguageSwitcher />
+              <div className="h-4 w-px bg-border"></div>
+              <CompactThemeSwitcher />
             </div>
           </div>
         </div>
 
         {/* 测试配置区域 */}
         <div className="card rounded-lg shadow-md p-6 mb-6 transition-theme">
-          <h2 className="text-xl font-semibold text-text mb-4">测试配置</h2>
+          <h2 className="text-xl font-semibold text-text mb-4">{t('testConfig')}</h2>
           
           <div className="mb-4">
             <label htmlFor="api-url" className="block text-sm font-medium text-text mb-2">
-              API地址:
+              {t('apiUrl')}
             </label>
             <input
               id="api-url"
@@ -143,13 +156,13 @@ export default function CorsTestPage() {
               value={apiUrl}
               onChange={(e) => setApiUrl(e.target.value)}
               className="input w-full px-3 py-2 rounded-md transition-theme"
-              placeholder="请输入要测试的API地址"
+              placeholder={t('apiUrlPlaceholder') as string}
             />
           </div>
 
           <div className="mb-4">
             <label htmlFor="http-method" className="block text-sm font-medium text-text mb-2">
-              请求方法:
+              {t('httpMethod')}
             </label>
             <select
               id="http-method"
@@ -169,14 +182,14 @@ export default function CorsTestPage() {
           {['POST', 'PUT', 'DELETE'].includes(httpMethod) && (
             <div className="mb-4">
               <label htmlFor="request-body" className="block text-sm font-medium text-text mb-2">
-                请求体 (JSON格式):
+                {t('requestBody')}
               </label>
               <textarea
                 id="request-body"
                 value={requestBody}
                 onChange={(e) => setRequestBody(e.target.value)}
                 className="textarea w-full px-3 py-2 rounded-md font-mono transition-theme"
-                placeholder='例如: {"key": "value"}'
+                placeholder={t('requestBodyPlaceholder') as string}
                 rows={6}
               />
             </div>
@@ -187,14 +200,14 @@ export default function CorsTestPage() {
             disabled={isLoading || !apiUrl.trim()}
             className="btn-primary font-medium py-2 px-6 rounded-md transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {isLoading ? '测试中...' : '开始测试'}
+            {isLoading ? t('testing') : t('startTest')}
           </button>
         </div>
 
         {/* 测试结果区域 */}
         {testResult && (
           <div className="card rounded-lg shadow-md p-6 transition-theme">
-            <h2 className="text-xl font-semibold text-text mb-4">测试结果</h2>
+            <h2 className="text-xl font-semibold text-text mb-4">{t('testResult')}</h2>
             <pre className="bg-surface p-4 rounded-md text-sm overflow-x-auto whitespace-pre-wrap text-text font-mono border border-border transition-theme">
               {testResult}
             </pre>
@@ -203,16 +216,40 @@ export default function CorsTestPage() {
 
         {/* 使用说明 */}
         <div className="bg-surface border border-border rounded-lg p-6 mt-6 transition-theme">
-          <h2 className="text-xl font-semibold text-primary mb-4">使用说明</h2>
+          <h2 className="text-xl font-semibold text-primary mb-4">{t('usageInstructions')}</h2>
           <ul className="text-textSecondary space-y-2">
-            <li>• 确保目标API服务器正在运行</li>
-            <li>• 支持 GET、POST、PUT、DELETE、OPTIONS 五种HTTP请求方法</li>
-            <li>• POST、PUT、DELETE 方法可以发送JSON格式的请求体</li>
-            <li>• 如果测试失败，检查服务器是否配置了正确的CORS头</li>
-            <li>• 常见的CORS头包括: Access-Control-Allow-Origin, Access-Control-Allow-Methods, Access-Control-Allow-Headers等</li>
-            <li>• 对于非简单请求，浏览器会先发送OPTIONS预检请求</li>
-            <li>• 开发环境中可以使用 '*' 作为 Access-Control-Allow-Origin 的值进行测试</li>
-            <li>• 右上角可以切换浅色、深色、蓝色三种主题风格</li>
+            <li>{(t('instructions') as {
+              item1: string; item2: string; item3: string; item4: string;
+              item5: string; item6: string; item7: string; item8: string;
+            }).item1}</li>
+            <li>{(t('instructions') as {
+              item1: string; item2: string; item3: string; item4: string;
+              item5: string; item6: string; item7: string; item8: string;
+            }).item2}</li>
+            <li>{(t('instructions') as {
+              item1: string; item2: string; item3: string; item4: string;
+              item5: string; item6: string; item7: string; item8: string;
+            }).item3}</li>
+            <li>{(t('instructions') as {
+              item1: string; item2: string; item3: string; item4: string;
+              item5: string; item6: string; item7: string; item8: string;
+            }).item4}</li>
+            <li>{(t('instructions') as {
+              item1: string; item2: string; item3: string; item4: string;
+              item5: string; item6: string; item7: string; item8: string;
+            }).item5}</li>
+            <li>{(t('instructions') as {
+              item1: string; item2: string; item3: string; item4: string;
+              item5: string; item6: string; item7: string; item8: string;
+            }).item6}</li>
+            <li>{(t('instructions') as {
+              item1: string; item2: string; item3: string; item4: string;
+              item5: string; item6: string; item7: string; item8: string;
+            }).item7}</li>
+            <li>{(t('instructions') as {
+              item1: string; item2: string; item3: string; item4: string;
+              item5: string; item6: string; item7: string; item8: string;
+            }).item8}</li>
           </ul>
         </div>
       </div>
