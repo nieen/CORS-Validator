@@ -5,7 +5,7 @@ import { HttpMethod } from '../types/state'
 // API 配置原子（持久化到 sessionStorage）
 export const apiUrlAtom = atomWithStorage(
   'cors-api-url',
-  'http://localhost:8002/api/v1/settings'
+  '/api/ping'
 )
 
 // HTTP 方法原子
@@ -42,7 +42,7 @@ export const resetTestConfigAtom = atom(
   null, // 读取值（不使用）
   (get, set) => {
     // 重置所有配置到默认值
-    set(apiUrlAtom, 'http://localhost:8002/api/v1/settings')
+    set(apiUrlAtom, '/api/ping')
     set(httpMethodAtom, 'GET')
     set(requestBodyAtom, '')
     set(testResultAtom, '')

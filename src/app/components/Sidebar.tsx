@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, ShieldCheck, Settings } from 'lucide-react';
+import { Menu, X, ShieldCheck, Settings, FileText, Layers } from 'lucide-react';
 
 interface MenuItem {
   id: string;
@@ -22,6 +22,18 @@ const Sidebar = () => {
       title: 'CORS 验证器',
       icon: <ShieldCheck size={20} />,
       href: '/',
+    },
+    {
+      id: 'wangeditor-test',
+      title: 'wangeditor 验证',
+      icon: <FileText size={20} />,
+      href: '/wangeditor-test',
+    },
+    {
+      id: 'state-test',
+      title: '状态管理测试',
+      icon: <Layers size={20} />,
+      href: '/state-test',
     },
     {
       id: 'settings',
@@ -64,7 +76,7 @@ const Sidebar = () => {
           {/* 侧边栏头部 */}
           <div className="p-4 border-b border-border">
             <h2 className="text-xl font-bold text-text">Tool Set</h2>
-            <p className="text-sm text-textSecondary">专业工具集</p>
+            <p className="text-sm text-textSecondary">工具集</p>
           </div>
 
           {/* 菜单列表 */}
