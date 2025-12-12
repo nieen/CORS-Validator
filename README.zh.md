@@ -18,6 +18,11 @@
 - ⚡ **实时验证**：即时测试CORS配置，快速定位问题
 - 🛡️ **错误处理**：完善的错误捕获和用户友好的错误提示
 - 📱 **响应式设计**：支持桌面端和移动端访问
+- 🌍 **多语言支持**：英文和中文语言切换
+- 🎭 **主题切换**：支持亮色、深色和蓝色主题
+- 📝 **WangEditor集成**：富文本编辑器，支持JSON/HTML格式转换
+- 🔄 **状态管理测试**：Zustand全局状态和Jotai原子状态验证
+- 🏠 **欢迎仪表盘**：美观的首页，快速导航到所有工具
 - 🔥 **实时更新**：项目正在开发中，欢迎贡献和反馈
 
 ## 🛠️ 技术栈
@@ -90,22 +95,31 @@ bun dev
 
 ## 📖 使用方法
 
-### 基本使用
+### 快速开始
 
-1. **输入API地址**
-   - 在"API地址"输入框中输入要测试的API端点
-   - 例如：`http://localhost:8002/api/v1/settings`
+访问应用后，您将看到欢迎仪表盘，快速访问所有可用工具：
+
+1. **CORS 验证器** - 测试 API 的 CORS 配置
+2. **WangEditor 验证** - 测试富文本编辑器的 JSON/HTML 转换
+3. **状态管理测试** - 验证 Zustand 和 Jotai 状态管理
+4. **设置** - 配置主题和语言偏好
+
+### CORS 验证器使用
+
+1. **输入 API 地址**
+   - 在 "API URL" 输入框中输入要测试的 API 端点
+   - 例如：`http://localhost:3000/api/ping`
 
 2. **选择请求方法**
-   - 从下拉菜单中选择HTTP方法（GET、POST、PUT、DELETE、OPTIONS）
-   - 默认为GET方法
+   - 从下拉菜单中选择 HTTP 方法（GET、POST、PUT、DELETE、OPTIONS）
+   - 默认为 GET 方法
 
 3. **配置请求体**（可选）
-   - 对于POST、PUT、DELETE方法，可以添加JSON格式的请求体
-   - 工具会自动验证JSON格式的正确性
+   - 对于 POST、PUT、DELETE 方法，可以添加 JSON 格式的请求体
+   - 工具会自动验证 JSON 格式的正确性
 
 4. **执行测试**
-   - 点击"开始测试"按钮
+   - 点击 "开始测试" 按钮
    - 查看详细的测试结果
 
 ### 测试结果解读
@@ -123,16 +137,68 @@ bun dev
 ```
 ❌ CORS错误: Failed to fetch
 
-这通常意味着：
-1. 目标服务器未正确配置CORS头
-2. 服务器不允许来自当前域的请求方法 (POST)
-3. 服务器未运行在指定地址
+This usually means:
+1. 目标服务器未正确配置CORS响应头
+2. 服务器不允许来自当前域的请求方法（如POST）
+3. 服务器未在指定地址运行
 ```
+
+### WangEditor 验证器使用
+
+1. **编辑内容**
+   - 使用富文本编辑器输入或编辑内容
+   - 支持文本格式化（加粗、斜体、下划线、代码）
+
+2. **获取 JSON 格式**
+   - 点击 "获取 JSON 格式内容" 按钮查看编辑器的 JSON 表示形式
+   - JSON 遵循 Slate 数据模型结构
+
+3. **设置 JSON 格式**
+   - 点击 "设置 JSON 格式内容" 按钮打开输入框
+   - 粘贴或输入有效的 JSON 内容
+   - 编辑器会自动将 JSON 转换为 HTML
+
+4. **上传图片**
+   - 使用编辑器工具栏中的图片上传功能
+   - 支持常见的图片格式（PNG、JPG、GIF 等）
+
+### 状态管理测试使用
+
+1. **全局状态测试（Zustand）**
+   - 在亮色、深色和蓝色主题间切换
+   - 在中文和英文语言间切换
+   - 实时查看当前主题和语言
+
+2. **原子状态测试（Jotai）**
+   - 输入 API URL（默认：`/api/ping`）
+   - 选择 HTTP 方法
+   - 为 POST/PUT/DELETE 配置请求体
+   - 点击 "开始测试" 执行测试
+   - 查看测试结果和响应数据
+
+3. **派生状态测试**
+   - 查看是否可以开始测试
+   - 查看请求体可见性状态
+   - 检查当前加载状态
+
+### 设置使用
+
+1. **语言选择**
+   - 在中文和英文之间选择
+   - 设置自动保存到 localStorage
+
+2. **主题选择**
+   - 在亮色、深色和蓝色主题间选择
+   - 主题偏好自动保存
+
+3. **自动保存配置**
+   - 切换自动保存配置功能
+   - 有助于跨会话保留测试配置
 
 ### 常见CORS配置示例
 
 #### Express.js 服务器配置
-```javascript
+```
 const express = require('express');
 const cors = require('cors');
 const app = express();
@@ -149,7 +215,7 @@ app.use(cors({
 ```
 
 #### Nginx 配置
-``nginx
+```
 location /api {
     add_header Access-Control-Allow-Origin "http://localhost:3000";
     add_header Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS";
@@ -170,26 +236,37 @@ location /api {
 toolset-fe/
 ├── src/
 │   ├── app/
-│   │   ├── globals.css           # 全局样式和主题变量
-│   │   ├── layout.tsx            # 根布局组件
-│   │   ├── page.tsx              # 主页面组件（CORS测试界面）
-│   │   ├── theme-switcher.tsx    # 主题切换组件
-│   │   └── language-switcher.tsx # 语言切换组件
+│   │   ├── api/                      # API 路由
+│   │   │   ├── upload/               # 图片上传端点
+│   │   │   └── ping/                 # 健康检查端点
+│   │   ├── components/               # 可复用组件
+│   │   │   └── Sidebar.tsx           # 导航侧边栏
+│   │   ├── globals.css               # 全局样式和主题变量
+│   │   ├── layout.tsx                # 根布局组件
+│   │   ├── page.tsx                  # 欢迎页面（首页）
+│   │   ├── cors-validator/           # CORS 验证器子路由
+│   │   ├── wangeditor-test/          # WangEditor 测试页面
+│   │   ├── state-test/               # 状态管理测试页面
+│   │   ├── settings/                 # 设置页面
+│   │   ├── theme-switcher.tsx        # 主题切换器组件
+│   │   └── language-switcher.tsx     # 语言切换器组件
 │   ├── stores/
-│   │   ├── index.ts              # 状态管理导出
-│   │   └── globalStore.ts        # Zustand 全局状态（主题、语言、偏好）
+│   │   ├── index.ts                  # 状态管理导出
+│   │   └── globalStore.ts            # Zustand 全局状态（主题、语言）
 │   ├── atoms/
-│   │   └── corsTestAtoms.ts      # Jotai 原子状态（CORS测试配置）
+│   │   └── corsTestAtoms.ts          # Jotai 原子状态（CORS 测试配置）
 │   ├── hooks/
-│   │   ├── index.ts              # Hooks 导出
-│   │   └── useAppState.ts        # 状态管理 Hooks
+│   │   ├── index.ts                  # Hooks 导出
+│   │   └── useAppState.ts            # 状态管理 hooks
+│   ├── components/                   # 额外组件
+│   │   └── StateTest.tsx             # 状态测试组件
 │   └── types/
-│       └── state.ts              # TypeScript 类型定义
-├── public/                       # 静态资源
-├── package.json                 # 项目配置
-├── next.config.ts               # Next.js 配置
-├── tailwind.config.ts           # Tailwind CSS 配置
-└── tsconfig.json                # TypeScript 配置
+│       └── state.ts                  # TypeScript 类型定义
+├── public/                            # 静态资源
+├── package.json                       # 项目配置
+├── next.config.ts                     # Next.js 配置
+├── tailwind.config.ts                 # Tailwind CSS 配置
+└── tsconfig.json                      # TypeScript 配置
 ```
 
 ### 可用脚本
@@ -212,10 +289,13 @@ npm run lint
 
 你可以通过修改以下文件来自定义应用：
 
-- `src/app/page.tsx` - 主要的应用逻辑和UI
-- `src/app/globals.css` - 全局样式
+- `src/app/page.tsx` - 欢迎页面和应用主逻辑
+- `src/app/globals.css` - 全局样式和主题变量
+- `src/stores/globalStore.ts` - Zustand 全局状态配置
+- `src/atoms/corsTestAtoms.ts` - Jotai 原子状态配置
 - `tailwind.config.ts` - Tailwind CSS 配置
 - `next.config.ts` - Next.js 配置
+- `src/app/components/Sidebar.tsx` - 侧边栏菜单配置
 
 ## 🚀 部署
 
@@ -233,7 +313,7 @@ npm run lint
 
 ### Docker 部署
 
-``dockerfile
+```
 FROM node:18-alpine
 
 WORKDIR /app
@@ -265,17 +345,41 @@ CMD ["npm", "start"]
 
 ## 🆘 常见问题
 
-### Q: 为什么测试总是失败？
+### Q: 为什么 CORS 测试总是失败？
 A: 请检查：
-- 目标API服务器是否正在运行
-- API地址是否正确
-- 服务器是否配置了正确的CORS头
+- 目标 API 服务器是否正在运行
+- API 地址是否正确
+- 服务器是否配置了正确的 CORS 响应头
+- 查看浏览器控制台获取具体错误信息
 
-### Q: 如何测试需要认证的API？
-A: 目前版本不支持自定义请求头，这个功能在后续版本中会添加。
+### Q: 如何测试需要认证的 API？
+A: 目前版本不支持自定义请求头。您可以：
+- 使用公开端点进行测试
+- 配置您的 API 允许来自 localhost:3000 的请求
+- 这个功能在后续版本中会添加
 
 ### Q: 支持哪些响应格式？
-A: 支持JSON和纯文本格式，会自动检测并适当解析。
+A: 支持 JSON 和纯文本格式，会自动检测并适当解析。
+
+### Q: 如何使用 WangEditor 验证器？
+A:
+- 在富文本编辑器中编辑内容
+- 点击 "获取 JSON 格式内容" 查看 JSON 表示
+- 点击 "设置 JSON 格式内容" 输入自定义 JSON 并转换为 HTML
+- 使用工具栏按钮上传图片
+
+### Q: 如何切换主题和语言？
+A:
+- 使用右上角的主题切换器
+- 使用右上角的语言切换器
+- 您的偏好设置会自动保存到 localStorage
+- 访问设置页面了解更多配置选项
+
+### Q: 我的设置保存在哪里？
+A: 所有设置都保存在：
+- `localStorage`：主题偏好、语言偏好
+- `sessionStorage` 或 `localStorage`：CORS 测试配置
+- 修改设置时会自动持久化
 
 ## 📞 联系方式
 

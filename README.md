@@ -18,6 +18,11 @@ A professional tool set that helps developers quickly test and debug API endpoin
 - ⚡ **Real-time Validation**: Instant CORS configuration testing, quickly locate issues
 - 🛡️ **Error Handling**: Comprehensive error catching and user-friendly error messages
 - 📱 **Responsive Design**: Support for desktop and mobile access
+- 🌍 **Multi-language Support**: English and Chinese language switching
+- 🎭 **Theme Switching**: Support for light, dark, and blue themes
+- 📝 **WangEditor Integration**: Rich text editor with JSON/HTML format conversion
+- 🔄 **State Management Testing**: Zustand global state and Jotai atomic state verification
+- 🏠 **Welcome Dashboard**: Beautiful home page with quick navigation to all tools
 - 🔥 **Live Updates**: Project is under development, contributions and feedback welcome
 
 ## 🛠️ Tech Stack
@@ -90,11 +95,20 @@ Open your browser and visit [http://localhost:3000](http://localhost:3000)
 
 ## 📖 Usage
 
-### Basic Usage
+### Getting Started
+
+Upon visiting the application, you'll see a welcome dashboard with quick access to all available tools:
+
+1. **CORS Validator** - Test API CORS configuration
+2. **WangEditor Validator** - Test rich text editor JSON/HTML conversion
+3. **State Management Test** - Verify Zustand and Jotai state management
+4. **Settings** - Configure theme and language preferences
+
+### CORS Validator Usage
 
 1. **Enter API Address**
-   - Enter the API endpoint you want to test in the "API Address" input field
-   - Example: `http://localhost:8002/api/v1/settings`
+   - Enter the API endpoint you want to test in the "API URL" input field
+   - Example: `http://localhost:3000/api/ping`
 
 2. **Select Request Method**
    - Choose HTTP method from the dropdown menu (GET, POST, PUT, DELETE, OPTIONS)
@@ -129,10 +143,62 @@ This usually means:
 3. Server is not running at specified address
 ```
 
+### WangEditor Validator Usage
+
+1. **Edit Content**
+   - Use the rich text editor to input or edit content
+   - Support text formatting (bold, italic, underline, code)
+
+2. **Get JSON Format**
+   - Click "Get JSON Format" button to view the editor's JSON representation
+   - The JSON follows Slate data model structure
+
+3. **Set JSON Format**
+   - Click "Set JSON Format" button to open input modal
+   - Paste or input valid JSON content
+   - The editor will automatically convert JSON to HTML
+
+4. **Upload Images**
+   - Use the image upload feature in the editor toolbar
+   - Supports common image formats (PNG, JPG, GIF, etc.)
+
+### State Management Test Usage
+
+1. **Global State Testing (Zustand)**
+   - Switch between light, dark, and blue themes
+   - Switch between Chinese (中文) and English languages
+   - View current theme and language in real-time
+
+2. **Atomic State Testing (Jotai)**
+   - Enter API URL (default: `/api/ping`)
+   - Select HTTP method
+   - Configure request body for POST/PUT/DELETE
+   - Click "Start Test" to execute the test
+   - View test results and response data
+
+3. **Derived State Testing**
+   - View whether you can start a test
+   - See request body visibility status
+   - Check current loading status
+
+### Settings Usage
+
+1. **Language Selection**
+   - Choose between Chinese (中文) and English
+   - Settings automatically persist to localStorage
+
+2. **Theme Selection**
+   - Choose between Light, Dark, and Blue themes
+   - Theme preference is saved automatically
+
+3. **Auto-save Configuration**
+   - Toggle automatic configuration saving
+   - Useful for preserving test configurations across sessions
+
 ### Common CORS Configuration Examples
 
 #### Express.js Server Configuration
-```javascript
+```
 const express = require('express');
 const cors = require('cors');
 const app = express();
@@ -149,7 +215,7 @@ app.use(cors({
 ```
 
 #### Nginx Configuration
-```nginx
+```
 location /api {
     add_header Access-Control-Allow-Origin "http://localhost:3000";
     add_header Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS";
@@ -170,26 +236,37 @@ location /api {
 toolset-fe/
 ├── src/
 │   ├── app/
-│   │   ├── globals.css           # Global styles and theme variables
-│   │   ├── layout.tsx            # Root layout component
-│   │   ├── page.tsx              # Main page component (CORS test interface)
-│   │   ├── theme-switcher.tsx    # Theme switcher component
-│   │   └── language-switcher.tsx # Language switcher component
+│   │   ├── api/                      # API routes
+│   │   │   ├── upload/               # Image upload endpoint
+│   │   │   └── ping/                 # Health check endpoint
+│   │   ├── components/               # Reusable components
+│   │   │   └── Sidebar.tsx           # Navigation sidebar
+│   │   ├── globals.css               # Global styles and theme variables
+│   │   ├── layout.tsx                # Root layout component
+│   │   ├── page.tsx                  # Welcome page (home)
+│   │   ├── cors-validator/           # CORS validator sub-route
+│   │   ├── wangeditor-test/          # WangEditor test page
+│   │   ├── state-test/               # State management test page
+│   │   ├── settings/                 # Settings page
+│   │   ├── theme-switcher.tsx        # Theme switcher component
+│   │   └── language-switcher.tsx     # Language switcher component
 │   ├── stores/
-│   │   ├── index.ts              # State management exports
-│   │   └── globalStore.ts        # Zustand global state (theme, language, preferences)
+│   │   ├── index.ts                  # State management exports
+│   │   └── globalStore.ts            # Zustand global state (theme, language)
 │   ├── atoms/
-│   │   └── corsTestAtoms.ts      # Jotai atomic state (CORS test configuration)
+│   │   └── corsTestAtoms.ts          # Jotai atomic state (CORS test configuration)
 │   ├── hooks/
-│   │   ├── index.ts              # Hooks exports
-│   │   └── useAppState.ts        # State management hooks
+│   │   ├── index.ts                  # Hooks exports
+│   │   └── useAppState.ts            # State management hooks
+│   ├── components/                   # Additional components
+│   │   └── StateTest.tsx             # State testing component
 │   └── types/
-│       └── state.ts              # TypeScript type definitions
-├── public/                       # Static assets
-├── package.json                 # Project configuration
-├── next.config.ts               # Next.js configuration
-├── tailwind.config.ts           # Tailwind CSS configuration
-└── tsconfig.json                # TypeScript configuration
+│       └── state.ts                  # TypeScript type definitions
+├── public/                            # Static assets
+├── package.json                       # Project configuration
+├── next.config.ts                     # Next.js configuration
+├── tailwind.config.ts                 # Tailwind CSS configuration
+└── tsconfig.json                      # TypeScript configuration
 ```
 
 ### Available Scripts
@@ -212,10 +289,13 @@ npm run lint
 
 You can customize the application by modifying the following files:
 
-- `src/app/page.tsx` - Main application logic and UI
-- `src/app/globals.css` - Global styles
+- `src/app/page.tsx` - Welcome page and main application logic
+- `src/app/globals.css` - Global styles and theme variables
+- `src/stores/globalStore.ts` - Zustand global state configuration
+- `src/atoms/corsTestAtoms.ts` - Jotai atomic state configuration
 - `tailwind.config.ts` - Tailwind CSS configuration
 - `next.config.ts` - Next.js configuration
+- `src/app/components/Sidebar.tsx` - Sidebar menu configuration
 
 ## 🚀 Deployment
 
@@ -233,7 +313,7 @@ You can customize the application by modifying the following files:
 
 ### Docker Deployment
 
-```dockerfile
+```
 FROM node:18-alpine
 
 WORKDIR /app
@@ -265,17 +345,41 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🆘 FAQ
 
-### Q: Why do tests always fail?
+### Q: Why do CORS tests always fail?
 A: Please check:
 - Whether the target API server is running
 - Whether the API address is correct
 - Whether the server has configured correct CORS headers
+- Check browser console for specific error messages
 
 ### Q: How to test APIs that require authentication?
-A: The current version does not support custom request headers, this feature will be added in future versions.
+A: The current version does not support custom request headers. You can:
+- Use public endpoints for testing
+- Configure your API to allow requests from localhost:3000
+- This feature will be added in future versions
 
 ### Q: What response formats are supported?
 A: Supports JSON and plain text formats, automatically detects and parses appropriately.
+
+### Q: How do I use the WangEditor validator?
+A: 
+- Edit content in the rich text editor
+- Click "Get JSON Format" to view the JSON representation
+- Click "Set JSON Format" to input custom JSON and convert to HTML
+- Images can be uploaded via the toolbar button
+
+### Q: How do I switch between themes and languages?
+A: 
+- Use the theme switcher in the top-right corner
+- Use the language switcher in the top-right corner
+- Your preferences are automatically saved to localStorage
+- Visit the Settings page for more configuration options
+
+### Q: Where are my settings saved?
+A: All settings are saved to:
+- `localStorage`: Theme preference, language preference
+- `sessionStorage` or `localStorage`: CORS test configuration
+- Changes are automatically persisted when you modify settings
 
 ## 📞 Contact
 
