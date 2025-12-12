@@ -1,6 +1,6 @@
 # Tool Set
 
-![Tool Set](https://img.shields.io/badge/Tool-Set-blue.svg)
+![Tool Set](https://img.shields.io/badge/ToolSet-FE-blue.svg)
 ![Next.js](https://img.shields.io/badge/Next.js-15.5.2-black.svg)
 ![React](https://img.shields.io/badge/React-19.1.0-blue.svg)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue.svg)
@@ -59,7 +59,7 @@
 1. **克隆项目**
 ```bash
 git clone <repository-url>
-cd tool-set
+cd toolset-fe
 ```
 
 2. **安装依赖**
@@ -149,7 +149,7 @@ app.use(cors({
 ```
 
 #### Nginx 配置
-```nginx
+``nginx
 location /api {
     add_header Access-Control-Allow-Origin "http://localhost:3000";
     add_header Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS";
@@ -167,7 +167,7 @@ location /api {
 
 ### 项目结构
 ```
-tool-set/
+toolset-fe/
 ├── src/
 │   ├── app/
 │   │   ├── globals.css           # 全局样式和主题变量
@@ -233,7 +233,7 @@ npm run lint
 
 ### Docker 部署
 
-```dockerfile
+``dockerfile
 FROM node:18-alpine
 
 WORKDIR /app
@@ -279,9 +279,9 @@ A: 支持JSON和纯文本格式，会自动检测并适当解析。
 
 ## 📞 联系方式
 
-如有问题或建议，请通过以下方式联系：
+如果您有任何问题或建议，请通过以下方式与我们联系：
 
-- 提交 [Issue](https://github.com/your-username/tool-set/issues)
+- 提交 [Issue](https://github.com/your-username/toolset-fe/issues)
 - 发送邮件到：your-email@example.com
 
 ---

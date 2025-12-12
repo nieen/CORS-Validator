@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X, ShieldCheck, Settings, FileText, Layers } from 'lucide-react';
+import { useLanguage } from '../../hooks/useAppState';
 
 interface MenuItem {
   id: string;
@@ -15,29 +16,54 @@ interface MenuItem {
 const Sidebar = () => {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const { language } = useLanguage();
+
+  const t = (key: string) => {
+    const translations = {
+      zh: {
+        toolSet: 'Tool Set',
+        toolsetDesc: '工具集',
+        corsValidator: 'CORS 验证器',
+        wangeditorTest: 'wangeditor 验证',
+        stateTest: '状态管理测试',
+        settings: '设置',
+        copyright: '© 2025 Tool Set'
+      },
+      en: {
+        toolSet: 'Tool Set',
+        toolsetDesc: 'Tools',
+        corsValidator: 'CORS Validator',
+        wangeditorTest: 'WangEditor Validator',
+        stateTest: 'State Management Test',
+        settings: 'Settings',
+        copyright: '© 2025 Tool Set'
+      }
+    };
+    return translations[language as keyof typeof translations]?.[key as keyof typeof translations.zh] || key;
+  };
 
   const menuItems: MenuItem[] = [
     {
       id: 'cors-validator',
-      title: 'CORS 验证器',
+      title: t('corsValidator'),
       icon: <ShieldCheck size={20} />,
       href: '/cors-validator',
     },
     {
       id: 'wangeditor-test',
-      title: 'wangeditor 验证',
+      title: t('wangeditorTest'),
       icon: <FileText size={20} />,
       href: '/wangeditor-test',
     },
     {
       id: 'state-test',
-      title: '状态管理测试',
+      title: t('stateTest'),
       icon: <Layers size={20} />,
       href: '/state-test',
     },
     {
       id: 'settings',
-      title: '设置',
+      title: t('settings'),
       icon: <Settings size={20} />,
       href: '/settings',
     },
@@ -75,8 +101,8 @@ const Sidebar = () => {
         <div className="flex flex-col h-full">
           {/* 侧边栏头部 */}
           <div className="p-4 border-b border-border">
-            <h2 className="text-xl font-bold text-text">Tool Set</h2>
-            <p className="text-sm text-textSecondary">工具集</p>
+            <h2 className="text-xl font-bold text-text">{t('toolSet')}</h2>
+            <p className="text-sm text-textSecondary">{t('toolsetDesc')}</p>
           </div>
 
           {/* 菜单列表 */}
@@ -103,7 +129,7 @@ const Sidebar = () => {
 
           {/* 侧边栏底部 */}
           <div className="p-4 border-t border-border text-center">
-            <p className="text-xs text-textSecondary">© 2025 Tool Set</p>
+            <p className="text-xs text-textSecondary">{t('copyright')}</p>
           </div>
         </div>
       </aside>

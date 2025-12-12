@@ -1,6 +1,6 @@
 # Tool Set
 
-![Tool Set](https://img.shields.io/badge/Tool-Set-blue.svg)
+![Tool Set](https://img.shields.io/badge/ToolSet-FE-blue.svg)
 ![Next.js](https://img.shields.io/badge/Next.js-15.5.2-black.svg)
 ![React](https://img.shields.io/badge/React-19.1.0-blue.svg)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue.svg)
@@ -59,7 +59,7 @@ A professional tool set that helps developers quickly test and debug API endpoin
 1. **Clone the project**
 ```bash
 git clone <repository-url>
-cd tool-set
+cd toolset-fe
 ```
 
 2. **Install dependencies**
@@ -167,7 +167,7 @@ location /api {
 
 ### Project Structure
 ```
-tool-set/
+toolset-fe/
 ├── src/
 │   ├── app/
 │   │   ├── globals.css           # Global styles and theme variables
@@ -281,7 +281,7 @@ A: Supports JSON and plain text formats, automatically detects and parses approp
 
 If you have questions or suggestions, please contact us through:
 
-- Submit [Issue](https://github.com/your-username/tool-set/issues)
+- Submit [Issue](https://github.com/your-username/toolset-fe/issues)
 - Send email to: your-email@example.com
 
 ---
