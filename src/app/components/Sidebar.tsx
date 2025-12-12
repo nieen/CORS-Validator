@@ -21,7 +21,7 @@ const Sidebar = () => {
       id: 'cors-validator',
       title: 'CORS 验证器',
       icon: <ShieldCheck size={20} />,
-      href: '/',
+      href: '/cors-validator',
     },
     {
       id: 'wangeditor-test',
