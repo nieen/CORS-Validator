@@ -55,7 +55,7 @@ export const useGlobalStore = create<GlobalState>()(
       },
     }),
     {
-      name: 'cors-validator-global', // localStorage 中的键名
+      name: 'tool-set-global', // localStorage 中的键名
       storage: createJSONStorage(() => localStorage),
       // 只持久化需要的状态
       partialize: (state) => ({

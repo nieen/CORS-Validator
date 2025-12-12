@@ -1,12 +1,12 @@
-# CORS Validator
+# Tool Set
 
-![CORS Validator](https://img.shields.io/badge/CORS-Validator-blue.svg)
+![Tool Set](https://img.shields.io/badge/Tool-Set-blue.svg)
 ![Next.js](https://img.shields.io/badge/Next.js-15.5.2-black.svg)
 ![React](https://img.shields.io/badge/React-19.1.0-blue.svg)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue.svg)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.x-38B2AC.svg)
 
-A professional Cross-Origin Resource Sharing (CORS) configuration validation tool that helps developers quickly test and debug API endpoint CORS settings.
+A professional tool set that helps developers quickly test and debug API endpoints.
 
 ## 🌟 Features
 
@@ -59,7 +59,7 @@ A professional Cross-Origin Resource Sharing (CORS) configuration validation too
 1. **Clone the project**
 ```bash
 git clone <repository-url>
-cd cors-validator
+cd tool-set
 ```
 
 2. **Install dependencies**
@@ -167,7 +167,7 @@ location /api {
 
 ### Project Structure
 ```
-cors-validator/
+tool-set/
 ├── src/
 │   ├── app/
 │   │   ├── globals.css           # Global styles and theme variables
@@ -281,7 +281,7 @@ A: Supports JSON and plain text formats, automatically detects and parses approp
 
 If you have questions or suggestions, please contact us through:
 
-- Submit [Issue](https://github.com/your-username/cors-validator/issues)
+- Submit [Issue](https://github.com/your-username/tool-set/issues)
 - Send email to: your-email@example.com
 
 ---

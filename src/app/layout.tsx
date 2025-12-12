@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Sidebar from "./components/Sidebar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,10 +14,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "CORS Validator",
-  description: "专业的跨域资源共享(CORS)配置验证工具，支持多种HTTP方法、智能响应解析、主题切换等功能 | Professional Cross-Origin Resource Sharing (CORS) configuration validation tool with multiple HTTP methods, intelligent response parsing, theme switching and more",
-  keywords: "CORS, 跨域, 验证工具, API测试, HTTP请求, Cross-Origin, Validation Tool, API Testing, HTTP Request",
-  authors: [{ name: "CORS Validator Team" }],
+  title: "Tool Set",
+  description: "专业的工具集，支持多种功能和特性 | Professional tool set with multiple functions and features",
+  keywords: "工具集, 工具, Tool Set, Tools",
+  authors: [{ name: "Tool Set Team" }],
 };
 
 export const viewport = {
@@ -32,10 +33,13 @@ export default function RootLayout({
   return (
     <html lang="zh-CN">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased transition-theme`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased transition-theme flex`}
       >
         {/* 新的 Zustand 状态管理不需要 Provider 包装 */}
-        {children}
+        <Sidebar />
+        <main className="flex-1 md:ml-0 transition-theme">
+          {children}
+        </main>
       </body>
     </html>
   );

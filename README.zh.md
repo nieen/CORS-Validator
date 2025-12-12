@@ -1,12 +1,12 @@
-# CORS Validator
+# Tool Set
 
-![CORS Validator](https://img.shields.io/badge/CORS-Validator-blue.svg)
+![Tool Set](https://img.shields.io/badge/Tool-Set-blue.svg)
 ![Next.js](https://img.shields.io/badge/Next.js-15.5.2-black.svg)
 ![React](https://img.shields.io/badge/React-19.1.0-blue.svg)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue.svg)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.x-38B2AC.svg)
 
-专业的跨域资源共享(CORS)配置验证工具，帮助开发者快速测试和调试API接口的CORS设置。
+专业的工具集，帮助开发者快速测试和调试API接口。
 
 ## 🌟 功能特性
 
@@ -59,7 +59,7 @@
 1. **克隆项目**
 ```bash
 git clone <repository-url>
-cd cors-validator
+cd tool-set
 ```
 
 2. **安装依赖**
@@ -167,7 +167,7 @@ location /api {
 
 ### 项目结构
 ```
-cors-validator/
+tool-set/
 ├── src/
 │   ├── app/
 │   │   ├── globals.css           # 全局样式和主题变量
@@ -281,7 +281,7 @@ A: 支持JSON和纯文本格式，会自动检测并适当解析。
 
 如有问题或建议，请通过以下方式联系：
 
-- 提交 [Issue](https://github.com/your-username/cors-validator/issues)
+- 提交 [Issue](https://github.com/your-username/tool-set/issues)
 - 发送邮件到：your-email@example.com
 
 ---

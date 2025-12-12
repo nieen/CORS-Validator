@@ -1,8 +1,6 @@
 'use client';
 
 import React, { memo } from 'react';
-import { CompactThemeSwitcher } from './theme-switcher';
-import { CompactLanguageSwitcher } from './language-switcher';
 import { useLanguage, useCorsTestConfig, useCorsTestState } from '../hooks/useAppState';
 import { Language, HttpMethod } from '../types/state';
 
@@ -69,7 +67,7 @@ const CorsTestPage = memo(() => {
           item5: '5. 查看测试结果，了解CORS配置是否正确',
           item6: '6. 如果出现CORS错误，请检查服务器的CORS配置',
           item7: '7. 确保目标服务器正在运行并且可以访问',
-          item8: '8. 可以切换主题和语言来获得更好的使用体验'
+          item8: '8. 可以在设置中切换主题和语言'
         },
         corsErrorExplanation: {
           line1: '1. 目标服务器未正确配置CORS头',
@@ -114,7 +112,7 @@ const CorsTestPage = memo(() => {
           item5: '5. Check the test results to see if CORS is configured correctly',
           item6: '6. If you encounter CORS errors, please check your server\'s CORS configuration',
           item7: '7. Make sure the target server is running and accessible',
-          item8: '8. You can switch themes and languages for a better user experience'
+          item8: '8. You can switch themes and languages in the settings'
         },
         corsErrorExplanation: {
           line1: '1. Target server has not properly configured CORS headers',
@@ -126,9 +124,6 @@ const CorsTestPage = memo(() => {
     const translation = translations[language] as Record<string, any>
     return translation?.[key] || key
   }
-
-
-
 
   /**
    * 测试CORS设置的核心函数
@@ -199,7 +194,11 @@ const CorsTestPage = memo(() => {
           }
         }
         
-        setTestResult(`✅ ${t('testSuccess')}\n${t('requestMethod')}: ${httpMethod}\n${t('statusCode')}: ${response.status}\n${t('contentType')}: ${contentType || t('notSpecified')}\n${t('responseData')}: ${typeof responseData === 'string' ? responseData : JSON.stringify(responseData, null, 2)}`);
+        setTestResult(`✅ ${t('testSuccess')}
+${t('requestMethod')}: ${httpMethod}
+${t('statusCode')}: ${response.status}
+${t('contentType')}: ${contentType || t('notSpecified')}
+${t('responseData')}: ${typeof responseData === 'string' ? responseData : JSON.stringify(responseData, null, 2)}`);
       } else {
         // 处理非成功状态码
         let errorData;
@@ -210,7 +209,11 @@ const CorsTestPage = memo(() => {
           errorData = t('unableToGetErrorDetails');
         }
         
-        setTestResult(`⚠️ ${t('requestFailed')}\n${t('requestMethod')}: ${httpMethod}\n${t('statusCode')}: ${response.status}\n${t('statusText')}: ${response.statusText}\n${t('errorDetails')}: ${errorData}`);
+        setTestResult(`⚠️ ${t('requestFailed')}
+${t('requestMethod')}: ${httpMethod}
+${t('statusCode')}: ${response.status}
+${t('statusText')}: ${response.statusText}
+${t('errorDetails')}: ${errorData}`);
       }
     } catch (error: unknown) {
       // 处理CORS错误或网络错误
@@ -221,7 +224,12 @@ const CorsTestPage = memo(() => {
           line2: string;
           line3: string;
         };
-        setTestResult(`❌ ${t('corsError')}: ${errorMessage}\n\n${language === 'zh' ? '这通常意味着：' : 'This usually means:'}\n${corsExplanation.line1}\n${corsExplanation.line2} (${httpMethod})\n${corsExplanation.line3}`);
+        setTestResult(`❌ ${t('corsError')}: ${errorMessage}
+
+${language === 'zh' ? '这通常意味着：' : 'This usually means:'}
+${corsExplanation.line1}
+${corsExplanation.line2} (${httpMethod})
+${corsExplanation.line3}`);
       } else {
         setTestResult(`❌ ${t('networkError')}: ${errorMessage}`);
       }
@@ -233,7 +241,7 @@ const CorsTestPage = memo(() => {
   return (
     <div className="min-h-screen bg-background py-8 px-4 transition-theme">
       <div className="max-w-4xl mx-auto">
-        {/* 页面标题和主题切换器 */}
+        {/* 页面标题 */}
         <div className="text-center mb-8">
           <div className="flex justify-between items-start mb-4">
             <div></div> {/* 左侧占位 */}
@@ -246,9 +254,7 @@ const CorsTestPage = memo(() => {
               </p>
             </div>
             <div className="flex justify-end items-center space-x-2">
-              <CompactLanguageSwitcher />
-              <div className="h-4 w-px bg-border"></div>
-              <CompactThemeSwitcher />
+              {/* 移除了语言和主题切换器 */}
             </div>
           </div>
         </div>
